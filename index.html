@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Milestone:5 Resume Builder</title>
+    <link rel="stylesheet" href="sytle.css">
+</head>
+<body>
+    <h1> Milestone:5 Resume Builder</h1>
+
+    <form id="form">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" required><br>
+
+            <label for="profilePic">Profile Picture:</label>
+            <input type="file" id="profilePic" accept="image/*"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Education</legend>
+            <textarea id="education" rows="5" required></textarea><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Experience</legend>
+            <textarea id="experience" rows="5" required></textarea><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Skills</legend>
+            <textarea id="skills" rows="5" required></textarea><br>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="resume-output" class="resume-output"></div>
+
+    <div id="shareable-link" style="display:none;">
+        <p>Share this link:</p>
+        <a id="shareable-url" href="#">Your Resume Link</a>
+    </div>
+
+    <button id="download-pdf" style="display:none;">Download as PDF</button>
+
+    <script src="app.js" type="module"></script>
+</body>
+</html>
