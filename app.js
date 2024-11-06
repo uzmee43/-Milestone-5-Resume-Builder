@@ -3,7 +3,7 @@ function GenerateUniqueID() {
     return Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
 }
 // Save the resume data to localStorage with a unique ID
-function SaveResumeData(id, data) {
+function saveResumeData(id, data) {
     localStorage.setItem(id, JSON.stringify(data));
 }
 // Retrieve the resume data by its unique ID
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (resumeID) {
         var savedData = GetResumeData(resumeID);
         if (savedData) {
-            renderResume(savedData);
+            RenderResume(savedData);
             downloadPDFButton.style.display = 'block';
         }
     }
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var name = document.getElementById('name').value;
         var email = document.getElementById('email').value;
         var phone = document.getElementById('phone').value;
+        var address = document.getElementById('address').value;
         var education = document.getElementById('education').value;
         var experience = document.getElementById('experience').value;
         var skills = document.getElementById('skills').value;
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             name: name,
             email: email,
             phone: phone,
+            address: address,
             education: education,
             experience: experience,
             skills: skills,
@@ -62,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.onload = function (e) {
                 if (e.target && e.target.result) {
                     resumeData.profilePic = e.target.result;
-                    SaveResumeData(uniqueID, resumeData);
-                    renderResume(resumeData);
+                    saveResumeData(uniqueID, resumeData);
+                    RenderResume(resumeData);
                     displayShareableLink(uniqueID);
                     downloadPDFButton.style.display = 'block';
                 }
@@ -71,19 +73,19 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.readAsDataURL(profilePicFile);
         }
         else {
-            SaveResumeData(uniqueID, resumeData);
-            renderResume(resumeData);
+            saveResumeData(uniqueID, resumeData);
+            RenderResume(resumeData);
             displayShareableLink(uniqueID);
             downloadPDFButton.style.display = 'block';
         }
     });
     // Function to render the resume on the page
-    function renderResume(data) {
+    function RenderResume(data) {
         var imageHTML = '';
         if (data.profilePic) {
             imageHTML = "<img src=\"".concat(data.profilePic, "\" alt=\"Profile Picture\" style=\"width:150px;height:150px;border-radius:50%;\"><br><br>");
         }
-        var resumeHTML = "\n            ".concat(imageHTML, "\n            <h2>").concat(data.name, "</h2>\n            <p><strong>Email:</strong> ").concat(data.email, "</p>\n            <p><strong>Phone:</strong> ").concat(data.phone, "</p>\n\n            <h3>Education</h3>\n            <p>").concat(data.education, "</p>\n\n            <h3>Experience</h3>\n            <p>").concat(data.experience, "</p>\n\n            <h3>Skills</h3>\n            <p>").concat(data.skills, "</p>\n        ");
+        var resumeHTML = "\n            ".concat(imageHTML, "\n            <h2>").concat(data.name, "</h2>\n            <p><strong>Email:</strong> ").concat(data.email, "</p>\n            <p><strong>Phone:</strong> ").concat(data.phone, "</p>\n            <p><strong>address:</strong> ").concat(data.address, "</p>\n\n            <h3>Education</h3>\n            <p>").concat(data.education, "</p>\n\n            <h3>Experience</h3>\n            <p>").concat(data.experience, "</p>\n\n            <h3>Skills</h3>\n            <p>").concat(data.skills, "</p>\n        ");
         resumeOutput.innerHTML = resumeHTML;
     }
     // Display the shareable link

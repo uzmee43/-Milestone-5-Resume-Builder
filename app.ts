@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = (document.getElementById('name') as HTMLInputElement).value;
         const email = (document.getElementById('email') as HTMLInputElement).value;
         const phone = (document.getElementById('phone') as HTMLInputElement).value;
+        const address = (document.getElementById('address') as HTMLInputElement).value;
         const education = (document.getElementById('education') as HTMLTextAreaElement).value;
         const experience = (document.getElementById('experience') as HTMLTextAreaElement).value;
         const skills = (document.getElementById('skills') as HTMLTextAreaElement).value;
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name,
             email,
             phone,
+            address,
             education,
             experience,
             skills,
@@ -99,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2>${data.name}</h2>
             <p><strong>Email:</strong> ${data.email}</p>
             <p><strong>Phone:</strong> ${data.phone}</p>
+            <p><strong>address:</strong> ${data.address}</p>
 
             <h3>Education</h3>
             <p>${data.education}</p>
